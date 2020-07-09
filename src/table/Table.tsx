@@ -102,7 +102,6 @@ class Table extends Component<TableProps> {
 
     render() {
         if (this.state.serviceTableData.rows !== undefined) {
-            console.log(this.state.serviceTableData.entryPoints)
             const tbody = this.state.serviceTableData.entryPoints.map((id) => {
                 const rowDataInfo = this.state.serviceTableData.rows[id]
                 return (
