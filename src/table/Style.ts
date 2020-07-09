@@ -1,4 +1,4 @@
-import React, { ComponentType } from 'react'
+import React, {ComponentType, ReactElement} from 'react'
 import { ColumnType, HeaderRendererProps, RendererProps, RowType, TableDataType } from '..'
 import { ServiceTableDataType } from '../types/PrivateTypes'
 
@@ -127,27 +127,27 @@ export const getRowClass = (
 
 export const renderHeaderCell = (
     Renderer: ComponentType<HeaderRendererProps> | undefined,
-    funcRenderer: ComponentType<HeaderRendererProps> | undefined,
+    funcRenderer: ((tableData: TableDataType, columnInfo: ColumnType) => ReactElement) | undefined,
     tableData: ServiceTableDataType,
     columnInfo: ColumnType) => {
     if (Renderer) {
         return React.createElement(Renderer, { tableData: tableData.tableData, columnInfo: columnInfo })
     } else if (funcRenderer) {
-        return funcRenderer(tableData: tableData.tableData, columnInfo: columnInfo)
+        return funcRenderer(tableData.tableData, columnInfo)
     }
     return columnInfo.title
 }
 
 export const renderCell = (
     Renderer: ComponentType<RendererProps> | undefined,
-    funcRenderer: ComponentType<RendererProps> | undefined,
+    funcRenderer: ((tableData: TableDataType, rowData: RowType, columnId: string) => ReactElement) | undefined,
     tableData: ServiceTableDataType,
     rowData: RowType,
     columnId: string) => {
     if (Renderer) {
         return React.createElement(Renderer, { tableData: tableData.tableData, rowData: rowData, columnId: columnId })
     } else if (funcRenderer) {
-        return funcRenderer(tableData: tableData.tableData, rowData: rowData, columnId: columnId)
+        return funcRenderer(tableData.tableData, rowData, columnId)
     }
     return rowData.data[columnId]?.value
 }
