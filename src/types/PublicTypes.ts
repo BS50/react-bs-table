@@ -11,9 +11,9 @@ export interface RowType {
 }
 
 export interface CellType {
-    value: any,
+    value?: any,
     funcRenderer?: ComponentType<RendererProps>,
-    render?: ComponentType<RendererProps>,
+    renderer?: ComponentType<RendererProps>,
     class?: ((tableData: TableDataType, rowData: RowType, columnId: string) => string) | string,
     style?: ((tableData: TableDataType, rowData: RowType, columnId: string) => { [key: string]: string }) | { [key: string]: string },
 }

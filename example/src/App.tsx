@@ -46,11 +46,11 @@ export default class App extends Component {
                     data: {
                         firstname: {
                             value: 'Петров',
-                            render: (props: any) => {
+                            renderer: (props: any) => {
                                 const rowData = props.rowData
                                 const columnId = props.columnId
                                 return <div style={{color: 'green'}}>
-                                    {rowData.data[columnId].value}
+                                    {rowData.data[columnId].value}sfsdf
                                 </div>
                             }
                         },

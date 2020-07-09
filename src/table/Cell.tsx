@@ -69,7 +69,7 @@ class Cell extends Component<CellProps> {
                         className={className}
                     >
                         {this.getGroupButton()}
-                        {renderCell(cellInfo.render, cellInfo.funcRenderer, this.props.serviceTableData, rowData, columnId)}
+                        {renderCell(cellInfo.renderer, cellInfo.funcRenderer, this.props.serviceTableData, rowData, columnId)}
                     </td>
                 )
             } else {
@@ -78,7 +78,7 @@ class Cell extends Component<CellProps> {
                         style={style}
                         className={className}
                     >
-                        {renderCell(cellInfo.render, cellInfo.funcRenderer, this.props.serviceTableData, rowData, columnId)}
+                        {renderCell(cellInfo.renderer, cellInfo.funcRenderer, this.props.serviceTableData, rowData, columnId)}
                     </td>
                 )
             }
