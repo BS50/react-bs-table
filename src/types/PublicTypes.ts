@@ -7,7 +7,8 @@ export interface RowType {
     style?: ((tableData: TableDataType, rowData: RowType) => { [key: string]: string }) | { [key: string]: string },
     data: {
         [key: string]: CellType | undefined
-    }
+    },
+    [key: string]: any
 }
 
 export interface CellType {
