@@ -105,7 +105,6 @@ class Table extends Component<TableProps> {
             console.log(this.state.serviceTableData.entryPoints)
             const tbody = this.state.serviceTableData.entryPoints.map((id) => {
                 const rowDataInfo = this.state.serviceTableData.rows[id]
-                console.log(rowDataInfo)
                 return (
                     <Row
                         key={rowDataInfo.data.id}

@@ -8,7 +8,9 @@ export interface RowType {
     data: {
         [key: string]: CellType | undefined
     },
-    [key: string]: any
+    props: {
+        [key: string]: any
+    }
 }
 
 export interface CellType {
@@ -17,6 +19,9 @@ export interface CellType {
     renderer?: ComponentType<RendererProps>,
     class?: ((tableData: TableDataType, rowData: RowType, columnId: string) => string) | string,
     style?: ((tableData: TableDataType, rowData: RowType, columnId: string) => { [key: string]: string }) | { [key: string]: string },
+    props: {
+        [key: string]: any
+    }
 }
 export interface ColumnType {
     field: string,
@@ -26,7 +31,9 @@ export interface ColumnType {
     class?: ((tableData: TableDataType, columnInfo: ColumnType) => string) | string,
     style?: ((tableData: TableDataType, columnInfo: ColumnType) => { [key: string]: string }) | { [key: string]: string },
     grouped?: boolean,
-    [key: string]: any
+    props: {
+        [key: string]: any
+    }
 }
 
 export interface TableDataType {
@@ -36,7 +43,9 @@ export interface TableDataType {
     defaultCellStyle?: ((tableData: TableDataType, rowData: RowType, columnId: string) => { [key: string]: string }) | { [key: string]: string },
     style?: ((tableData: TableDataType) => { [key: string]: string }) | { [key: string]: string },
     class?: ((tableData: TableDataType) => string) | string,
-    [key: string]: any
+    props: {
+        [key: string]: any
+    }
 }
 
 export interface HeaderRendererProps {
