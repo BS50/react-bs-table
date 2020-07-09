@@ -133,7 +133,7 @@ export default class App extends Component {
                                 color: 'white'
                             },
                             value: 'Иванов',
-                            funcRenderer: (_tableData: TableDataType, _rowInfo: RowType, _columnId: string) => {
+                            funcRenderer: (_tableData: TableDataType, _rowInfo: RowType, _columnId: string): JSX.Element | null => {
                                 return <div>Лешка Иванов</div>
                             }
                         },

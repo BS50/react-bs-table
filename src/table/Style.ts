@@ -1,4 +1,4 @@
-import React, {ComponentType, ReactElement} from 'react'
+import React, {ComponentType } from 'react'
 import { ColumnType, HeaderRendererProps, RendererProps, RowType, TableDataType } from '..'
 import { ServiceTableDataType } from '../types/PrivateTypes'
 
@@ -127,7 +127,7 @@ export const getRowClass = (
 
 export const renderHeaderCell = (
     Renderer: ComponentType<HeaderRendererProps> | undefined,
-    funcRenderer: ((tableData: TableDataType, columnInfo: ColumnType) => ReactElement) | undefined,
+    funcRenderer: ((tableData: TableDataType, columnInfo: ColumnType) => JSX.Element | null | null) | undefined,
     tableData: ServiceTableDataType,
     columnInfo: ColumnType) => {
     if (Renderer) {
@@ -140,7 +140,7 @@ export const renderHeaderCell = (
 
 export const renderCell = (
     Renderer: ComponentType<RendererProps> | undefined,
-    funcRenderer: ((tableData: TableDataType, rowData: RowType, columnId: string) => ReactElement) | undefined,
+    funcRenderer: ((tableData: TableDataType, rowData: RowType, columnId: string) => JSX.Element | null | null) | undefined,
     tableData: ServiceTableDataType,
     rowData: RowType,
     columnId: string) => {
