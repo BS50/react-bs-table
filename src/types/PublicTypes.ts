@@ -24,7 +24,8 @@ export interface ColumnType {
     renderer?: ComponentType<HeaderRendererProps>,
     class?: ((tableData: TableDataType, columnInfo: ColumnType) => string) | string,
     style?: ((tableData: TableDataType, columnInfo: ColumnType) => { [key: string]: string }) | { [key: string]: string },
-    grouped?: boolean
+    grouped?: boolean,
+    [key: string]: any
 }
 
 export interface TableDataType {
