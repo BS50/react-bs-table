@@ -133,7 +133,7 @@ export const renderHeaderCell = (
     if (Renderer) {
         return React.createElement(Renderer, { tableData: tableData.tableData, columnInfo: columnInfo })
     } else if (funcRenderer) {
-        return React.createElement(funcRenderer, { tableData: tableData.tableData, columnInfo: columnInfo })
+        return funcRenderer(tableData: tableData.tableData, columnInfo: columnInfo)
     }
     return columnInfo.title
 }
@@ -147,7 +147,7 @@ export const renderCell = (
     if (Renderer) {
         return React.createElement(Renderer, { tableData: tableData.tableData, rowData: rowData, columnId: columnId })
     } else if (funcRenderer) {
-        return React.createElement(funcRenderer, { tableData: tableData.tableData, rowData: rowData, columnId: columnId })
+        return funcRenderer(tableData: tableData.tableData, rowData: rowData, columnId: columnId)
     }
     return rowData.data[columnId]?.value
 }

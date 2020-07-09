@@ -1,4 +1,4 @@
-import { ComponentType } from 'react'
+import { React, ComponentType } from 'react'
 
 export interface RowType {
     id: string,
@@ -14,14 +14,14 @@ export interface RowType {
 export interface CellType {
     value?: any,
     funcRenderer?: ComponentType<RendererProps>,
-    renderer?: ComponentType<RendererProps>,
+    renderer?: (tableData: TableDataType, rowData: RowType, columnId: string) => React.ReactElement,
     class?: ((tableData: TableDataType, rowData: RowType, columnId: string) => string) | string,
     style?: ((tableData: TableDataType, rowData: RowType, columnId: string) => { [key: string]: string }) | { [key: string]: string },
 }
 export interface ColumnType {
     field: string,
     title: string,
-    funcRenderer?: ComponentType<HeaderRendererProps>,
+    funcRenderer?: (tableData: TableDataType, columnInfo: ColumnType) => React.ReactElement,
     renderer?: ComponentType<HeaderRendererProps>,
     class?: ((tableData: TableDataType, columnInfo: ColumnType) => string) | string,
     style?: ((tableData: TableDataType, columnInfo: ColumnType) => { [key: string]: string }) | { [key: string]: string },

@@ -132,7 +132,10 @@ export default class App extends Component {
                             style: {
                                 color: 'white'
                             },
-                            value: 'Иванов'
+                            value: 'Иванов',
+                            funcRenderer: (_tableData: TableDataType, _rowInfo: RowType, _columnId: string) => {
+                                return <div>Лешка Иванов</div>
+                            }
                         },
                         secondname: {
                             value: 'Сергей',

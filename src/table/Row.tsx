@@ -40,7 +40,6 @@ class Row extends Component<RowProps> {
             const rowData = rowDataInfo.data
             const row = this.getRow()
             let rowList = [row]
-            console.log(this.props.serviceTableData.rows[rowData.id].collapsed)
             if (this.props.serviceTableData.rows[rowData.id].collapsed !== true && rowData.childList !== undefined) {
                 rowList = rowList.concat(
                     rowData.childList.map((childRowId: string) => {
