@@ -12,10 +12,6 @@ interface HeaderCellProps {
 class HeaderCell extends Component<HeaderCellProps> {
     render() {
         if (this.props.columnInfo !== undefined) {
-            console.log(getHeaderStyle(
-                this.props.columnInfo.style,
-                this.props.serviceTableData.tableData,
-                this.props.columnInfo))
             return (
                 <th
                     key={this.props.columnInfo.field}
