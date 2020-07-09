@@ -1,0 +1,16 @@
+.filterButton {
+    float: right;
+}
+
+.transparentButton {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+}
+
+.active-filter {
+    color: #009f13;
+}
+.table-container {
+    position: static;
+}

@@ -15,8 +15,10 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "typeRoots": ["../src/typings.d.ts", "../src/types/PublicTypes.ts"]
   },
   "include": ["src"],
-  "exclude": ["node_modules", "dist", "example"]
+  "exclude": ["node_modules", "dist", "example"],
+  "typeRoots": ["../src/typings.d.ts"]
 }

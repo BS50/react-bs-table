@@ -7,13 +7,14 @@
   "repository": "BS50/react-bs-table",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
+  "typings": "dist/index.d.ts",
   "source": "src/index.tsx",
   "engines": {
     "node": ">=10"
   },
   "scripts": {
-    "build": "microbundle-crl --no-compress --format modern,cjs",
-    "start": "microbundle-crl watch --no-compress --format modern,cjs",
+    "build": "rollup -c",
+    "start": "rollup -c -w",
     "prepare": "run-s build",
     "test": "run-s test:unit test:lint test:build",
     "test:build": "run-s build",
@@ -59,5 +60,12 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "@types/uuid": "^8.0.0",
+    "rollup": "^2.21.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-postcss": "^3.1.2",
+    "rollup-plugin-typescript2": "^0.27.1"
+  }
 }
