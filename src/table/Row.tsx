@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 
 import Cell from './Cell'
-import { getRowClass } from './Style'
+import {getRowClass, getRowStyle} from './Style'
 import { ColumnType } from '../types/PublicTypes'
 import { ServiceRowType, ServiceTableDataType } from '../types/PrivateTypes'
 
@@ -27,8 +27,9 @@ class Row extends Component<RowProps> {
             )
         })
         const className = getRowClass(rowData.class, this.props.serviceTableData.tableData, rowData)
+        const style = getRowStyle(rowData.style, this.props.serviceTableData.tableData, rowData)
         return (
-            <tr key={rowData.id} className={className}>
+            <tr key={rowData.id} className={className} style={style}>
                 {row}
             </tr>
         )

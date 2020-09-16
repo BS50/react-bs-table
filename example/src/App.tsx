@@ -89,6 +89,91 @@ export default class App extends Component {
         }
     }
 
+    getTreeDataWithParentId() {
+        return {
+            columns: [
+                {
+                    field: 'firstname',
+                    title: 'Фамилия',
+                    grouped: true,
+                    class: 'name-column-class'
+                },
+                {
+                    field: 'secondname',
+                    title: 'Имя',
+                    class: ''
+                },
+                {
+                    field: 'birthday',
+                    title: 'Дата рождения',
+                    class: 'default-column-class'
+                }
+            ],
+            rows: [
+                {
+                    id: 'xxx-0',
+                    data: {
+                        firstname: {
+                            value: 'Иванов'
+                        },
+                        secondname: {
+                            value: 'Сергей'
+                        },
+                        birthday: {
+                            value: '12.04.1956'
+                        }
+                    }
+                },
+                {
+                    id: 'yyy-1',
+                    data: {
+                        firstname: {
+                            value: 'Петров',
+                            renderer: (props: any) => {
+                                const rowData = props.rowData
+                                const columnId = props.columnId
+                                return <div style={{color: 'green'}}>
+                                    {rowData.data[columnId].value}RENDER
+                                </div>
+                            }
+                        },
+                        secondname: {
+                            value: 'Игорь'
+                        },
+                    }
+                },
+                {
+                    id: '2',
+                    parent: 'yyy-1',
+                    data: {
+                        firstname: {
+                            value: 'Пушкин'
+                        },
+                        secondname: {
+                            value: 'Савелий'
+                        }
+                    }
+                },
+                {
+                    id: '3',
+                    parent: 'yyy-1',
+                    data: {
+                        firstname: {
+                            value: 'Барышев'
+                        },
+                        secondname: {
+                            value: 'Михаил'
+                        },
+                        birthday: {
+                            value: '03.09.1971'
+                        }
+                    }
+                }
+            ],
+            class: 'table-class'
+        }
+    }
+
     getStyledData() {
         return {
             class: 'background-lightgray',
@@ -121,8 +206,11 @@ export default class App extends Component {
             rows: [
                 {
                     id: uuidv4(),
-                    class: (_tableData: TableDataType, _rowInfo: RowType) => {
-                        return 'background-blue'
+                    // class: (_tableData: TableDataType, _rowInfo: RowType) => {
+                    //     return 'background-blue'
+                    // },
+                    style: (_tableData: TableDataType, _rowInfo: RowType) => {
+                        return {'background-color': 'pink'}
                     },
                     data: {
                         firstname: {
@@ -271,6 +359,7 @@ export default class App extends Component {
 
             <div>
                 <Table tableData={this.getTreeData()} />
+                <Table tableData={this.getTreeDataWithParentId()} />
                 <Table tableData={this.getSimpleData()} />
                 <Table tableData={this.getStyledData()} />
             </div>

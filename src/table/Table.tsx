@@ -61,6 +61,15 @@ class Table extends Component<TableProps> {
                     Table.updateLevel(serviceTableData, rowDataInfo, 0)
                 }
 
+                const parentId = rowDataInfo.data.parent
+                if (parentId !== undefined) {
+                    const childList = serviceTableData.rows[parentId].data.childList
+                    if (childList === undefined) {
+                        serviceTableData.rows[parentId].data.childList = [id]
+                    } else {
+                        childList.push(id)
+                    }
+                }
                 if (rowDataInfo.data.childList !== undefined) {
                     rowDataInfo.data.childList.map((childId: string) => {
                         serviceTableData.rows[childId].data.parent = id
