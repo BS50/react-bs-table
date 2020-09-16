@@ -50,7 +50,7 @@ export default class App extends Component {
                                 const rowData = props.rowData
                                 const columnId = props.columnId
                                 return <div style={{color: 'green'}}>
-                                    {rowData.data[columnId].value}sfsdf
+                                    {rowData.data[columnId].value}RENDER
                                 </div>
                             }
                         },
@@ -85,10 +85,7 @@ export default class App extends Component {
                     }
                 }
             ],
-            class: 'table-class',
-            entryPoints: [
-                'xxx-0', 'yyy-1'
-            ]
+            class: 'table-class'
         }
     }
 

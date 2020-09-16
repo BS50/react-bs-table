@@ -3,7 +3,7 @@ import HeaderRow from './HeaderRow'
 import Row from './Row'
 import {getTableStyle, getTableClass} from './Style'
 import styles from './Table.css'
-import { TableDataType } from '../types/PublicTypes'
+import {RowType, TableDataType} from '../types/PublicTypes'
 import {ServiceRowType, ServiceTableDataType} from '../types/PrivateTypes'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -60,15 +60,20 @@ class Table extends Component<TableProps> {
                 if (rowDataInfo.level === -1) {
                     Table.updateLevel(serviceTableData, rowDataInfo, 0)
                 }
+
+                if (rowDataInfo.data.childList !== undefined) {
+                    rowDataInfo.data.childList.map((childId: string) => {
+                        serviceTableData.rows[childId].data.parent = id
+                    })
+                }
             })
 
-            if (nextProps.tableData.entryPoints === undefined) {
-                serviceTableData.entryPoints = nextProps.tableData.rows.map((rowData) => {
-                    return rowData.id
-                })
-            } else {
-                serviceTableData.entryPoints = nextProps.tableData.entryPoints
-            }
+            serviceTableData.entryPoints = nextProps.tableData.rows.filter((rowData) => {
+                return rowData.parent === undefined
+            }).map((rowData: RowType) => {
+                return rowData.id
+            })
+
             nextState.serviceTableData = serviceTableData
         }
         return nextState

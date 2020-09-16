@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { getCellClass, getCellStyle, renderCell } from './Style'
 import C from './C'
-import {CellType, ColumnType, RowType} from '../types/PublicTypes'
-import {ServiceRowType, ServiceTableDataType} from '../types/PrivateTypes'
+import { CellType, ColumnType, RowType } from '../types/PublicTypes'
+import { ServiceRowType, ServiceTableDataType } from '../types/PrivateTypes'
 
 interface CellProps {
     serviceTableData: ServiceTableDataType,

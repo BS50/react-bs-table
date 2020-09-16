@@ -3,6 +3,7 @@ import { ComponentType } from 'react'
 export interface RowType {
     id: string,
     childList?: Array<string>,
+    parent?: string,
     class?: ((tableData: TableDataType, rowData: RowType) => string) | string,
     style?: ((tableData: TableDataType, rowData: RowType) => { [key: string]: string }) | { [key: string]: string },
     data: {
