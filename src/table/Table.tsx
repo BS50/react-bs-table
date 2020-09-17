@@ -85,7 +85,6 @@ class Table extends Component<TableProps> {
                 Table.updateLevel(serviceTableData, rowDataInfo, 0)
             })
 
-            console.log(serviceTableData)
             nextState.serviceTableData = serviceTableData
         }
         return nextState
@@ -94,8 +93,6 @@ class Table extends Component<TableProps> {
     static updateLevel(serviceTableData: ServiceTableDataType, rowDataInfo: ServiceRowType, level: number) {
         rowDataInfo.level = level
         const rowData = rowDataInfo.data
-        console.log(`${rowData.id}`)
-        console.log(`${rowData.childList}`)
         if (rowData.childList !== undefined) {
             rowData.childList.map((childRowId: string) => {
                 const childRowDataInfo = serviceTableData.rows[childRowId]
