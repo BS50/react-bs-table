@@ -125,7 +125,7 @@ export default class App extends Component {
                     }
                 },
                 {
-                    id: 'yyy-1',
+                    id: "6cd00663-a901-4f0f-b7cd-f939a63ca311",
                     data: {
                         firstname: {
                             value: 'Петров',
@@ -144,7 +144,7 @@ export default class App extends Component {
                 },
                 {
                     id: '2',
-                    parent: 'yyy-1',
+                    parent: "6cd00663-a901-4f0f-b7cd-f939a63ca311",
                     data: {
                         firstname: {
                             value: 'Пушкин'
@@ -156,7 +156,7 @@ export default class App extends Component {
                 },
                 {
                     id: '3',
-                    parent: 'yyy-1',
+                    parent: "6cd00663-a901-4f0f-b7cd-f939a63ca311",
                     data: {
                         firstname: {
                             value: 'Барышев'

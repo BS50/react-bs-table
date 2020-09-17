@@ -73,12 +73,6 @@ class Table extends Component<TableProps> {
                     })
                 }
             })
-            idList.map((id) => {
-                const rowDataInfo = serviceTableData.rows[id]
-                if (rowDataInfo.level === -1) {
-                    Table.updateLevel(serviceTableData, rowDataInfo, 0)
-                }
-            })
 
             serviceTableData.entryPoints = nextProps.tableData.rows.filter((rowData) => {
                 return rowData.parent === undefined
@@ -86,17 +80,22 @@ class Table extends Component<TableProps> {
                 return rowData.id
             })
 
+            serviceTableData.entryPoints.map((id: string) => {
+                const rowDataInfo = serviceTableData.rows[id]
+                Table.updateLevel(serviceTableData, rowDataInfo, 0)
+            })
+
+            console.log(serviceTableData)
             nextState.serviceTableData = serviceTableData
         }
         return nextState
     }
 
     static updateLevel(serviceTableData: ServiceTableDataType, rowDataInfo: ServiceRowType, level: number) {
-        // console.log(level)
-        // console.log(rowDataInfo)
-
         rowDataInfo.level = level
         const rowData = rowDataInfo.data
+        console.log(`${rowData.id}`)
+        console.log(`${rowData.childList}`)
         if (rowData.childList !== undefined) {
             rowData.childList.map((childRowId: string) => {
                 const childRowDataInfo = serviceTableData.rows[childRowId]
