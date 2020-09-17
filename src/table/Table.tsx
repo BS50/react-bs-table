@@ -57,9 +57,6 @@ class Table extends Component<TableProps> {
             })
             idList.map((id) => {
                 const rowDataInfo = serviceTableData.rows[id]
-                if (rowDataInfo.level === -1) {
-                    Table.updateLevel(serviceTableData, rowDataInfo, 0)
-                }
 
                 const parentId = rowDataInfo.data.parent
                 if (parentId !== undefined) {
@@ -74,6 +71,12 @@ class Table extends Component<TableProps> {
                     rowDataInfo.data.childList.map((childId: string) => {
                         serviceTableData.rows[childId].data.parent = id
                     })
+                }
+            })
+            idList.map((id) => {
+                const rowDataInfo = serviceTableData.rows[id]
+                if (rowDataInfo.level === -1) {
+                    Table.updateLevel(serviceTableData, rowDataInfo, 0)
                 }
             })
 

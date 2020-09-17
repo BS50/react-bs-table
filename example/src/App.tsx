@@ -358,10 +358,10 @@ export default class App extends Component {
         return (
 
             <div>
-                <Table tableData={this.getTreeData()} />
+                {/*<Table tableData={this.getTreeData()} />*/}
                 <Table tableData={this.getTreeDataWithParentId()} />
-                <Table tableData={this.getSimpleData()} />
-                <Table tableData={this.getStyledData()} />
+                {/*<Table tableData={this.getSimpleData()} />*/}
+                {/*<Table tableData={this.getStyledData()} />*/}
             </div>
         )
     }
