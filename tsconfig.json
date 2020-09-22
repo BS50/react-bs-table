@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "dist",
+      "downlevelIteration": true,
     "module": "esnext",
     "lib": ["dom", "esnext"],
     "moduleResolution": "node",

@@ -66,7 +66,7 @@ class Table extends Component<TableProps> {
                     } else {
                         childList.push(id)
                     }
-                    serviceTableData.rows[parentId].data.childList = childList?.filter((v, i, a) => a.indexOf(v) === i)
+                    serviceTableData.rows[parentId].data.childList = [...new Set(childList)]
                 }
                 if (rowDataInfo.data.childList !== undefined) {
                     rowDataInfo.data.childList.map((childId: string) => {
