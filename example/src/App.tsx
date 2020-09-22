@@ -5,6 +5,10 @@ import { v4 as uuidv4 } from 'uuid'
 import {ColumnType, HeaderRendererProps, RowType, TableDataType} from "../../src";
 
 export default class App extends Component {
+    state = {
+        data : this.getTreeDataWithParentId()
+    }
+
     getTreeData() {
         return {
             columns: [
@@ -358,8 +362,11 @@ export default class App extends Component {
         return (
 
             <div>
+                <div onClick={() => {
+                    this.setState(this.state)
+                }}>Hello</div>
                 {/*<Table tableData={this.getTreeData()} />*/}
-                <Table tableData={this.getTreeDataWithParentId()} />
+                <Table tableData={this.state.data} />
                 {/*<Table tableData={this.getSimpleData()} />*/}
                 {/*<Table tableData={this.getStyledData()} />*/}
             </div>

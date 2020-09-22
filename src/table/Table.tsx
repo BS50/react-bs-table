@@ -66,6 +66,7 @@ class Table extends Component<TableProps> {
                     } else {
                         childList.push(id)
                     }
+                    serviceTableData.rows[parentId].data.childList = childList?.filter((v, i, a) => a.indexOf(v) === i)
                 }
                 if (rowDataInfo.data.childList !== undefined) {
                     rowDataInfo.data.childList.map((childId: string) => {
@@ -86,6 +87,7 @@ class Table extends Component<TableProps> {
             })
 
             nextState.serviceTableData = serviceTableData
+            console.log(nextState.serviceTableData)
         }
         return nextState
     }
@@ -115,6 +117,7 @@ class Table extends Component<TableProps> {
 
     render() {
         if (this.state.serviceTableData.rows !== undefined) {
+            console.log(this.state.serviceTableData)
             const tbody = this.state.serviceTableData.entryPoints.map((id) => {
                 const rowDataInfo = this.state.serviceTableData.rows[id]
                 return (
