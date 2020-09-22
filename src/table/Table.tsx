@@ -87,7 +87,6 @@ class Table extends Component<TableProps> {
             })
 
             nextState.serviceTableData = serviceTableData
-            console.log(nextState.serviceTableData)
         }
         return nextState
     }
@@ -117,7 +116,6 @@ class Table extends Component<TableProps> {
 
     render() {
         if (this.state.serviceTableData.rows !== undefined) {
-            console.log(this.state.serviceTableData)
             const tbody = this.state.serviceTableData.entryPoints.map((id) => {
                 const rowDataInfo = this.state.serviceTableData.rows[id]
                 return (
