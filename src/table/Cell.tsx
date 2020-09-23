@@ -43,7 +43,10 @@ class Cell extends Component<CellProps> {
         const rowData: RowType = this.props.rowDataInfo.data
         const cellInfo: CellType | undefined = rowData.data[columnId]
         let isCellWithGroupButton = false
-        if (rowData.childList !== undefined && rowData.childList.length > 0 && this.props.columnInfo.grouped) {
+        if (
+            this.props.rowDataInfo.serviceChildList !== undefined &&
+            this.props.rowDataInfo.serviceChildList.length > 0 &&
+            this.props.columnInfo.grouped) {
             isCellWithGroupButton = true
         }
         if (cellInfo !== undefined) {

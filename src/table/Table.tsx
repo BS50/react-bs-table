@@ -52,25 +52,30 @@ class Table extends Component<TableProps> {
                     data: rowInfo
                 }
             })
-            const idList = Object.keys(serviceTableData.rows).sort((a, b) => {
-                return (parseInt(a) >= parseInt(b)) ? 1 : -1
-            })
+            const idList = serviceTableData.tableData.rows
+                .map((rowData) => {
+                    return rowData.id
+                })
+                // .sort((a, b) => {
+                //     return (parseInt(a) >= parseInt(b)) ? 1 : -1
+                // })
             idList.map((id) => {
-                const rowDataInfo = serviceTableData.rows[id]
+                const rowData = serviceTableData.rows[id]
 
-                const parentId = rowDataInfo.data.parent
+                const parentId = rowData.data.parent
                 if (parentId !== undefined) {
-                    const childList = serviceTableData.rows[parentId].data.childList
+                    let childList = serviceTableData.rows[parentId].serviceChildList
                     if (childList === undefined) {
-                        serviceTableData.rows[parentId].data.childList = [id]
+                        childList = [id]
                     } else {
                         childList.push(id)
                     }
-                    serviceTableData.rows[parentId].data.childList = [...new Set(childList)]
-                }
-                if (rowDataInfo.data.childList !== undefined) {
-                    rowDataInfo.data.childList.map((childId: string) => {
-                        serviceTableData.rows[childId].data.parent = id
+                    serviceTableData.rows[parentId].serviceChildList = [...new Set(childList)]
+                    serviceTableData.rows[parentId].serviceParent = parentId
+                } else if (rowData.data.childList !== undefined) {
+                    rowData.data.childList.map((childId: string) => {
+                        serviceTableData.rows[childId].serviceParent = id
+                        serviceTableData.rows[childId].serviceChildList = [...new Set(rowData.data.childList)]
                     })
                 }
             })
@@ -93,9 +98,8 @@ class Table extends Component<TableProps> {
 
     static updateLevel(serviceTableData: ServiceTableDataType, rowDataInfo: ServiceRowType, level: number) {
         rowDataInfo.level = level
-        const rowData = rowDataInfo.data
-        if (rowData.childList !== undefined) {
-            rowData.childList.map((childRowId: string) => {
+        if (rowDataInfo.serviceChildList !== undefined) {
+            rowDataInfo.serviceChildList.map((childRowId: string) => {
                 const childRowDataInfo = serviceTableData.rows[childRowId]
                 if (childRowDataInfo.level === -1) {
                     Table.updateLevel(serviceTableData, childRowDataInfo, level + 1)

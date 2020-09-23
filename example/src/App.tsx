@@ -363,6 +363,18 @@ export default class App extends Component {
 
             <div>
                 <div onClick={() => {
+                    const rowData1 = this.state.data.rows.find((rowData) => {
+                        return rowData.id === '2'
+                    })
+                    if (rowData1 !== undefined) {
+                        rowData1.id = '50'
+                    }
+                    const rowData2 = this.state.data.rows.find((rowData) => {
+                        return rowData.id === '3'
+                    })
+                    if (rowData2 !== undefined) {
+                        rowData2.id = '40'
+                    }
                     this.setState(this.state)
                 }}>Hello</div>
                 {/*<Table tableData={this.getTreeData()} />*/}
