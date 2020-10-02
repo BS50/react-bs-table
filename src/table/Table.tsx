@@ -89,7 +89,7 @@ class Table extends Component<TableProps> {
             })
 
             serviceTableData.entryPoints = nextProps.tableData.rows.filter((rowData) => {
-                return rowData.parent === undefined
+                return serviceTableData.rows[rowData.id].serviceParent === undefined
             }).map((rowData: RowType) => {
                 return rowData.id
             })
