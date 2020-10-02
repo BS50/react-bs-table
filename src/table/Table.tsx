@@ -56,27 +56,35 @@ class Table extends Component<TableProps> {
                 .map((rowData) => {
                     return rowData.id
                 })
-                // .sort((a, b) => {
-                //     return (parseInt(a) >= parseInt(b)) ? 1 : -1
-                // })
             idList.map((id) => {
                 const rowData = serviceTableData.rows[id]
 
                 const parentId = rowData.data.parent
                 if (parentId !== undefined) {
-                    let childList = serviceTableData.rows[parentId].serviceChildList
-                    if (childList === undefined) {
-                        childList = [id]
+                    const parent = serviceTableData.rows[parentId]
+                    if (parent !== undefined) {
+                        let childList = serviceTableData.rows[parentId].serviceChildList
+                        if (childList === undefined) {
+                            childList = [id]
+                        } else {
+                            childList.push(id)
+                        }
+                        parent.serviceChildList = [...new Set(childList)]
+                        serviceTableData.rows[id].serviceParent = parentId
                     } else {
-                        childList.push(id)
+                        serviceTableData.rows[id].serviceParent = undefined
                     }
-                    serviceTableData.rows[parentId].serviceChildList = [...new Set(childList)]
-                    serviceTableData.rows[parentId].serviceParent = parentId
                 } else if (rowData.data.childList !== undefined) {
+                    const childList = [...new Set(rowData.data.childList)]
                     rowData.data.childList.map((childId: string) => {
-                        serviceTableData.rows[childId].serviceParent = id
-                        serviceTableData.rows[childId].serviceChildList = [...new Set(rowData.data.childList)]
+                        const child = serviceTableData.rows[childId]
+                        if (childId !== undefined) {
+                            child.serviceParent = id
+                        } else {
+                            childList.splice(childList.indexOf(childId), 1)
+                        }
                     })
+                    serviceTableData.rows[id].serviceChildList = childList
                 }
             })
 
