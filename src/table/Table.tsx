@@ -117,13 +117,22 @@ class Table extends Component<TableProps> {
     }
 
     triggerRow = (rowId: string) => {
-        if (this.state.serviceTableData.rows[rowId].collapsed) {
-            this.state.serviceTableData.rows[rowId].collapsed = undefined
-        } else {
-            this.state.serviceTableData.rows[rowId].collapsed = true
-        }
-        this.state.stateId = uuidv4()
-        this.setState(this.state)
+        this.setState((prevState: State): State => {
+            return {
+                ...prevState,
+                serviceTableData: {
+                    ...prevState.serviceTableData,
+                    rows: {
+                        ...prevState.serviceTableData.rows,
+                        [rowId]: {
+                            ...prevState.serviceTableData.rows[rowId],
+                            collapsed: prevState.serviceTableData.rows[rowId].collapsed ? undefined : true
+                        }
+                    }
+                },
+                stateId: uuidv4()
+            }
+        })
     }
 
     render() {

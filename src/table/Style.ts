@@ -1,5 +1,5 @@
 import React, {ComponentType } from 'react'
-import { ColumnType, HeaderRendererProps, RendererProps, RowType, TableDataType } from '..'
+import { ColumnType, HeaderRendererProps, RowType, TableDataType } from '..'
 import { ServiceTableDataType } from '../types/PrivateTypes'
 
 export const getTableStyle = (
@@ -136,18 +136,4 @@ export const renderHeaderCell = (
         return funcRenderer(tableData.tableData, columnInfo)
     }
     return columnInfo.title
-}
-
-export const renderCell = (
-    Renderer: ComponentType<RendererProps> | undefined,
-    funcRenderer: ((tableData: TableDataType, rowData: RowType, columnId: string) => JSX.Element | null | null) | undefined,
-    tableData: ServiceTableDataType,
-    rowData: RowType,
-    columnId: string) => {
-    if (Renderer) {
-        return React.createElement(Renderer, { tableData: tableData.tableData, rowData: rowData, columnId: columnId })
-    } else if (funcRenderer) {
-        return funcRenderer(tableData.tableData, rowData, columnId)
-    }
-    return rowData.data[columnId]?.value
 }
