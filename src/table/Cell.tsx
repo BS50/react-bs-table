@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import { getCellClass, getCellStyle, renderCell } from './Style'
+import { getCellClass, getCellStyle } from './Style'
 import C from './C'
 import { CellType, ColumnType, RowType } from '../types/PublicTypes'
 import { ServiceRowType, ServiceTableDataType } from '../types/PrivateTypes'
+import RenderedCell from './RenderedCell'
+import { isEqual } from '../util/utils'
 
 interface CellProps {
     serviceTableData: ServiceTableDataType,
@@ -11,6 +13,17 @@ interface CellProps {
     columnInfo: ColumnType
 }
 class Cell extends Component<CellProps> {
+    shouldComponentUpdate(nextProps: Readonly<CellProps>): boolean {
+        const columnId = this.props.columnInfo.field
+        const value = this.props.rowDataInfo.data.data[columnId]
+        const nextValue = nextProps.rowDataInfo.data.data[columnId]
+        if (value && nextValue) {
+            return !isEqual(value, nextValue)
+        } else {
+            return !(value === undefined && nextValue === undefined)
+        }
+    }
+
     getGroupButtonStyle = () => {
         return {
             backgroundColor: 'Transparent',
@@ -72,7 +85,13 @@ class Cell extends Component<CellProps> {
                         className={className}
                     >
                         {this.getGroupButton()}
-                        {renderCell(cellInfo.renderer, cellInfo.funcRenderer, this.props.serviceTableData, rowData, columnId)}
+                        <RenderedCell
+                            Renderer={cellInfo.renderer}
+                            funcRenderer={cellInfo.funcRenderer}
+                            tableData={this.props.serviceTableData}
+                            rowData={rowData}
+                            columnId={columnId}
+                        />
                     </td>
                 )
             } else {
@@ -81,7 +100,13 @@ class Cell extends Component<CellProps> {
                         style={style}
                         className={className}
                     >
-                        {renderCell(cellInfo.renderer, cellInfo.funcRenderer, this.props.serviceTableData, rowData, columnId)}
+                        <RenderedCell
+                            Renderer={cellInfo.renderer}
+                            funcRenderer={cellInfo.funcRenderer}
+                            tableData={this.props.serviceTableData}
+                            rowData={rowData}
+                            columnId={columnId}
+                        />
                     </td>
                 )
             }
